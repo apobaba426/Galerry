@@ -1,1 +1,1 @@
-# Galerry
+# İnsta
