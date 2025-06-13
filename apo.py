@@ -76,6 +76,13 @@ O = '\x1b[38;5;208m'
 Y = '\033[1;34m'
 C = '\033[2;35c'
 M = '\x1b[1;37m'
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+reset = "\033[0m"
 
 
 total_hits = 0
@@ -86,14 +93,49 @@ good_ig = 0
 infoinsta = {}
 
 apo_header = render('APO', colors=['white', 'red'], align='center')
-print("\x1b[1;36m—" * 67)
+print("\x1b[1;36m*" * 67)
 print(apo_header)
-print("\x1b[1;36m—" * 67)
+print("\x1b[1;36m*" * 67)
 
 
-ID = ("7951543717")
-print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-TOKEN = ("7973237788:AAHKeQgTNfAwVZT24bnTnyNWgReScOsk77M")
+
+ID = ("6234846385")
+print("_______________________________👇____")
+TOKEN = ("7843231025:AAEYdT5GDLl8kU6CJLR7DLKOT6OgypOuDto")
+
+min_followers = int(input("Minimum takipçi sayısını girin: "))
+min_posts = int(input("Minimum post sayısını girin: "))
+a = print(f"""
+1{white} - {yellow}2016     
+2{white} - {yellow}2017     
+3{white} - {yellow}2018     
+4{white} - {yellow}2019     
+5{white} - {yellow}Random                {cyan}       
+{cyan}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+""")
+Apo = input(f"seciminiz: ")
+
+if Apo == '1':
+    bbk = 2500000000
+    id = 3713668786
+elif Apo == '2':
+    bbk = 3713668786
+    id = 5699785217
+elif Apo == '3':
+    bbk = 5699785217
+    id = 8597939245
+elif Apo == '4':
+    bbk = 8597939245
+    id = 21254029834
+elif Apo == '5':
+    bbk = 10000
+    id = 21254029834
+else:
+    exit()
+    
+    
+os.system('clear')
+        
     
 os.system('clear')
 print("\x1b[1;36m—" * 67)
@@ -273,21 +315,6 @@ def rest(user):
         apoporno = 'Reset None'
     return apoporno
 
-def date(hy):
-    try:
-        ranges = [
-            (3713668786, 2016),
-            (5699785217, 2017),
-            (8597939245, 2018),
-            (21254029834, 2019),
-        ]
-        for upper, year in ranges:
-            if hy <= upper:
-                return year
-        return 2023
-    except Exception:
-        pass
-
 import urllib.parse
 import requests
 
@@ -345,7 +372,7 @@ def apo_python():
         data = {
             'lsd': ''.join(random.choices(string.ascii_letters + string.digits, k=32)),
             'variables': json.dumps({
-                'id': int(random.randrange(4239516755, 6345108209)),
+                'id': int(random.randrange(bbk, id)),
                 'render_surface': 'PROFILE'
             }),
             'doc_id': '25618261841150840'
@@ -357,8 +384,11 @@ def apo_python():
             username = account.get('username')
             if username:
                 followers = account.get('follower_count', 0)
-                if followers < 50:
+                posts = account.get('media_count', 0)
+
+                if followers < min_followers or posts < min_posts:
                     continue
+
                 infoinsta[username] = account
                 emails = [username + apo_domain]
                 for email in emails:
@@ -371,8 +401,7 @@ def stats_loop():
     while True:
         update_stats()
         time.sleep(1)
-
 Thread(target=stats_loop, daemon=True).start()
 
-for _ in range(100):
+for _ in range(130):
     Thread(target=apo_python).start()
