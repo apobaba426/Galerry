@@ -99,9 +99,9 @@ print("\x1b[1;36m*" * 67)
 
 
 
-ID = ("6234846385")
+ID = input('chat id:  ')
 print("_______________________________👇____")
-TOKEN = ("7843231025:AAEYdT5GDLl8kU6CJLR7DLKOT6OgypOuDto")
+TOKEN = input('token: ')
 
 min_followers = int(input("Minimum takipçi sayısını girin: "))
 min_posts = int(input("Minimum post sayısını girin: "))
